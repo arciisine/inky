@@ -1,6 +1,12 @@
-var Inky = require('../../lib/inky');
-var cheerio = require('cheerio');
-var htmlEqual = require('assert-html-equal');
+const { Inky } = require('../../lib/inky');
+const assert = require('assert').equal;
+const beautify = require('js-beautify').html;
+
+const OPTS = {
+  indent_size: 2,
+  quiet: true,
+  max_preserve_newlines: 0
+}
 
 /**
  * Takes HTML input, runs it through the Inky parser, and compares the output to what's expected.
@@ -8,9 +14,12 @@ var htmlEqual = require('assert-html-equal');
  * @param {string} expected - Expected HTML output.
  * @throws {Error} Throws an error if the output is not identical.
  */
-module.exports = function compare(input, expected, cheerioOpts) {
-  var inky = new Inky();
-  var output = inky.releaseTheKraken(input, cheerioOpts);
+module.exports = function compare(input, expected) {
+  const inky = new Inky();
+  let output = inky.releaseTheKraken(input);
 
-  htmlEqual(output, expected);
+  output = beautify(output, OPTS);
+  expected = beautify(expected, OPTS)
+
+  assert(output, expected);
 }
