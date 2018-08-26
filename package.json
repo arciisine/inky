@@ -9,7 +9,7 @@
     "email",
     "template"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "./node_modules/.bin/tsc && mocha"
   },
@@ -24,7 +24,7 @@
     "mocha": "^2.4.5",
     "typescript": "^3.0.1"
   },
-  "repository": "https://github.com/zurb/inky.git",
-  "bugs": "https://github.com/zurb/inky/issues",
+  "repository": "https://github.com/arciisine/inky.git",
+  "bugs": "https://github.com/arciisine/inky/issues",
   "license": "MIT"
 }
