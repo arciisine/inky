@@ -1,1 +1,1 @@
-module.exports = { Inky: require('./lib/inky') };
+module.exports = require('./dist');
