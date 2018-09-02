@@ -18,7 +18,6 @@ export const COMPONENT_DEFAULTS = {
   'h-line': 'hLine'
 };
 
-
 export class ComponentFactory {
   constructor(
     private columnCount: number = 12,
@@ -33,12 +32,12 @@ export class ComponentFactory {
     let expander = '';
 
     // Add 1 to include current column
-    let colCount = Adapter.getChildNodes(element).length;
+    const colCount = Adapter.getChildNodes(element).length;
 
     // Check for sizes. If no attribute is provided, default to small-12. Divide evenly for large columns
-    let smallSize = parseInt(attrs.small || '0', 10) || this.columnCount;
-    let largeSize = parseInt(attrs.large || attrs.small || '0', 10) || Math.trunc(this.columnCount / colCount);
-    let noExpander = 'no-expander' in attrs && attrs['no-expander'] !== 'false';
+    const smallSize = parseInt(attrs.small || '0', 10) || this.columnCount;
+    const largeSize = parseInt(attrs.large || attrs.small || '0', 10) || Math.trunc(this.columnCount / colCount);
+    const noExpander = 'no-expander' in attrs && attrs['no-expander'] !== 'false';
 
     attrs.class = classes(`small-${smallSize}`, `large-${largeSize}`, 'columns', attrs.class);
 
@@ -103,7 +102,7 @@ export class ComponentFactory {
     const attrs = getAttrMap(element);
     let inner = getInner(element);
 
-    let { href, target, class: cls, ...parentAttrs } = attrs;
+    const { href, target, class: cls, ...parentAttrs } = attrs;
     let expander = '';
     // If we have the href attribute we can create an anchor for the inner of the button;
     if (href) {
@@ -209,7 +208,7 @@ export class ComponentFactory {
 
     // Prepare optional target attribute for the <a> element
     attrs.class = classes('menu-item', attrs.class);
-    let { href, target, ...parentAttrs } = attrs;
+    const { href, target, ...parentAttrs } = attrs;
     return `
        <th ${toStr(parentAttrs)}>
          <a ${toStr({ href, target })}>${inner}</a>
@@ -260,14 +259,14 @@ export class ComponentFactory {
 
   spacer(element: Node) {
     const attrs = getAttrMap(element);
-    let html: string[] = [];
+    const html: string[] = [];
 
     attrs.class = classes('spacer', attrs.class);
 
     const smAttr = attrs['size-sm'];
     const lgAttr = attrs['size-lg'];
-    const sm = smAttr ? parseInt(smAttr) : undefined;
-    const lg = lgAttr ? parseInt(lgAttr) : undefined;
+    const sm = smAttr ? parseInt(smAttr, 10) : undefined;
+    const lg = lgAttr ? parseInt(lgAttr, 10) : undefined;
 
     const buildSpacer = (size: number | string, extraClass: string = '') => {
       const newAttrs = { ...attrs };
@@ -286,7 +285,7 @@ export class ComponentFactory {
           </tbody>
         </table>
       `;
-    }
+    };
 
     if (sm || lg) {
       if (sm) {
@@ -361,7 +360,7 @@ export class ComponentFactory {
         }
       }
       return node;
-    }
+    };
 
     if (typeof document === 'string') {
       const node = document.includes('<html') ? parse(document) : parseFragment(document);

@@ -16,7 +16,7 @@ const OPTS = {
  */
 module.exports = function compare(input, expected) {
   const inky = new Inky();
-  let output = inky.releaseTheKraken(input);
+  let output = inky.render(input);
 
   output = beautify(output, OPTS);
   expected = beautify(expected, OPTS)

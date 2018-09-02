@@ -127,7 +127,7 @@ var i = new Inky(options);
 var html = cheerio.load(input)
 
 // Now unleash the fury
-var convertedHtml = i.releaseTheKraken(html);
+var convertedHtml = i.render(html);
 
 // The return value is a Cheerio object. Get the string value with .html()
 convertedHtml.html();

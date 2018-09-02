@@ -26,7 +26,6 @@ export function getAttrMap(el: Node) {
   }
 }
 
-
 export function toStr(o: string[] | { [key: string]: string }) {
   if (Array.isArray(o)) {
     return o.join(' ');
@@ -54,7 +53,7 @@ export function setDomAttribute(node: Node, attrName: string, value: string) {
   if (!attr) {
     attrList.push({
       name: attrName,
-      value: value
+      value
     });
   } else {
     attr.value = attrName === 'class' ? classes(attr.value, value) : value;

@@ -10,12 +10,7 @@ class Inky {
         // HTML tags for custom components
         this.factory = new componentFactory_1.ComponentFactory(options.columnCount || 12, Object.assign({}, componentFactory_1.COMPONENT_DEFAULTS, (options.components || {})));
     }
-    /**
-     * Awww yiss. Kickstarts the whole parser. Takes in HTML as a string, checks if there are any custom components. If there are, it replaces the nested components, traverses the DOM and replaces them with email markup.
-     * @param {string} $ - Input HTML as a string
-     * @returns {object} Modified HTML as a string
-     */
-    releaseTheKraken(text) {
+    render(text) {
         // Extract raws
         const raws = [];
         let html = text.replace(/\< *raw *\>(.*?)\<\/ *raw *\>/gi, (all, inner) => raws.push(inner) ? `###RAW${raws.length - 1}###` : all);
@@ -44,3 +39,4 @@ class Inky {
     }
 }
 exports.Inky = Inky;
+//# sourceMappingURL=index.js.map
